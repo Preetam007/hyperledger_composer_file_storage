@@ -2,19 +2,14 @@
  * Write your model definitions here
  */
 
-namespace org.example.biznet
+namespace org.preetam.composer
 
 participant User identified by email {
   o String email
   o String image
 }
 
-asset SampleAsset identified by assetId {
-  o String assetId
-  o String value
-}
-
-transaction ChangeAssetValue {
-  o String newValue
-  --> Asset relatedAsset
+asset Drug identified by containerId {
+  o String containerId
+  o String containerImage
 }

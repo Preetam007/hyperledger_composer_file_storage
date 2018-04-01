@@ -1,22 +1,22 @@
 'use strict';
-const USER_NS = 'org.example.biznet';
+const USER_NS = 'org.preetam.composer';
 const BusinessNetworkConnection = require('composer-client').BusinessNetworkConnection;
 const fs = require('fs');
 const path = require('path');
 const addUserInfo = (req, res, next) => {
-  let businessNetworkConnection = new BusinessNetworkConnection();
+  const businessNetworkConnection = new BusinessNetworkConnection();
   let user;
 
-  return businessNetworkConnection.connect('admin@composer-file-stroage')
+  return businessNetworkConnection.connect('admin@composer-file-stroage-ways')
       .then(() => {
         return businessNetworkConnection.getParticipantRegistry(
-            USER_NS + '.User');
+            `${USER_NS}.User`);
       })
       .then(userRegistry => {
-        let factory =
+        const factory =
             businessNetworkConnection.getBusinessNetwork().getFactory();
         user = factory.newResource(USER_NS, 'User', req.body.email);
-        user.image = fs.readFileSync(path.resolve(__dirname + `/sample.${req.body.type}`))
+        user.image = fs.readFileSync(path.resolve(`${__dirname}/sample.${req.body.type}`))
                          .toString('base64');
 
         return userRegistry.add(user);
@@ -41,17 +41,18 @@ const addUserInfo = (req, res, next) => {
 };
 
 const getSpecificUser = (req, res, next) => {
-  let businessNetworkConnection = new BusinessNetworkConnection();
+  const businessNetworkConnection = new BusinessNetworkConnection();
   let user;
   let assets;
   let exists;
   return businessNetworkConnection
-      .connect('admin@composer-file-stroage')  // Auth module will add
+      .connect('admin@composer-file-stroage-ways')  // Auth module will add
       .then(() => {
         return businessNetworkConnection.getParticipantRegistry(
-            USER_NS + '.User');
+            `${USER_NS}.User`);
       })
       .then(userRegistry => {
+        console.log('okk');
         assets = userRegistry;
         return userRegistry.exists(req.params.id);
       })

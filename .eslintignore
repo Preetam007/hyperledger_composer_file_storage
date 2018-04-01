@@ -1,0 +1,10 @@
+coverage
+dist
+go
+lib
+node_modules
+out
+models
+*.bna
+*.card
+test

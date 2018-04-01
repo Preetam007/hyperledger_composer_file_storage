@@ -4,8 +4,10 @@ const express = require('express');
 const router = express.Router();
 const usersCrud = require('./users-crud');
 
+console.log('ok');
+
 router.post(
-    '/user',
+    '/',
     usersCrud.addUserInfo, (req, res, next) => {
       res.json({
         message: req.my_result.message,
@@ -15,8 +17,7 @@ router.post(
     });
 
 
-
-router.get('/user/:id', usersCrud.getSpecificUser, (req, res, next) => {
+router.get('/:id', usersCrud.getSpecificUser, (req, res, next) => {
   res.json({
     message: req.my_result.message,
     dev_message: req.my_result.dev_message,
@@ -25,4 +26,4 @@ router.get('/user/:id', usersCrud.getSpecificUser, (req, res, next) => {
 });
 
 
-module.exports = router
+module.exports = router;

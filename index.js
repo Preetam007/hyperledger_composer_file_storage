@@ -4,8 +4,12 @@ const compression = require('compression');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
-const port = 8081;
+const port = 3000;
 const app = express();
+
+
+const version = 'v0';
+require.cache.misc = require('./utils/misc');
 
 // settings
 /**
@@ -24,8 +28,8 @@ app.disable('x-powered-by');
 app.disable('x-powered-by');
 
 app.use(compression());
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(cookieParser());
 app.use(helmet());
 // using a single line of code will attach 7 protecting middleware to Express
@@ -38,12 +42,12 @@ app.use(helmet.hidePoweredBy({
       // configuration .
 // app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
 // app.use(flash());
-app.use('*', function(req, res, next) {
-  // logger.debug(`URL: ${req.baseUrl}`);
+app.use('*', (req, res, next) => {
+  console.log(`URL: ${req.baseUrl}`);
   next();
 });
 
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   res.header(
@@ -58,15 +62,18 @@ app.use((err, req, res, next) => {
   }
 });
 
+const endpoints = ['users','assets'];
 
-app.use('/api/v0', require(`./modules/v0/users/routes.js`));
+endpoints.forEach((name) => {
+  app.use(`/api/${version}/${name}`, require(`./modules/${version}/${name}/routes.js`));
+});
 
 app.listen(port)
-    .on('error',
-        error => {
-            // logger.error(error);
-        })
-    .on('listening', () => {
-      console.log(`Express listening on ${port}`);
-      // logger.info(`Express listening on ${port}`);
-    });
+  .on('error',
+      error => {
+        console.error(error);
+      })
+  .on('listening', () => {
+    console.log(`Express listening on ${port}`);
+    // logger.info(`Express listening on ${port}`);
+  });
