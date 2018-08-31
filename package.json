@@ -1,5 +1,5 @@
 {
-  "name": "composer-file-stroage-ways",
+  "name": "composer-file-storage-ways",
   "version": "0.0.1",
   "description": "differnet ways (ipfs, string) of file storage with hyperledger compser",
   "scripts": {

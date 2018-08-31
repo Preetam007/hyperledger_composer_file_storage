@@ -59,19 +59,20 @@ cd ~/fabric-tools
 
 - Generate the Business Network Archive (BNA) file from the root directory:
 ```
+cd ~/hyperledger_composer_file_storage
 composer archive create -t dir -n .
 ```
 
-- Successfully created a file called `composer-file-stroage-ways@0.1.0.bna` in root directory
+- Successfully created a file called `composer-file-storage-ways@0.1.0.bna` in root directory
 
 - Install the runtime instance for the .bna file. This HAS to use the PeerAdmin@hlfv1 card
 ```
-composer runtime install --card PeerAdmin@hlfv1 --businessNetworkName composer-file-stroage-ways
+composer runtime install --card PeerAdmin@hlfv1 --businessNetworkName composer-file-storage-ways
 ```
 
 - Start a network and create a new networkAdmin card for the business network
 ```
-composer network start --card PeerAdmin@hlfv1 --networkAdmin admin --networkAdminEnrollSecret adminpw --archiveFile composer-file-stroage-ways@0.1.0.bna --file networkadmin.card
+composer network start --card PeerAdmin@hlfv1 --networkAdmin admin --networkAdminEnrollSecret adminpw --archiveFile composer-file-storage-ways@0.1.0.bna --file networkadmin.card
 ```
 
 - Import the new networkadmin.card generated
@@ -79,14 +80,14 @@ composer network start --card PeerAdmin@hlfv1 --networkAdmin admin --networkAdmi
 composer card import --file networkadmin.card
 ```
 
-- A card `admin@composer-file-stroage-ways` should be visible with `composer-file-stroage-ways` as network assigned
+- A card `admin@composer-file-storage-ways` should be visible with `composer-file-storage-ways` as network assigned
 ```
 composer card list
 ```
 
 - Activate the card by setting the certificate
 ```
-composer network ping --card admin@composer-file-stroage-ways
+composer network ping --card admin@composer-file-storage-ways
 ```
 
 - To remove everything and start from scratch, follow step 1
@@ -109,7 +110,7 @@ docker-compose start
 
 https://hyperledger.github.io/composer/reference/composer.network.update.html
 
-`composer network update -a composer-file-stroage-ways@0.1.0.bna -c admin@composer-file-stroage-ways`
+`composer network update -a composer-file-storage-ways@0.1.0.bna -c admin@composer-file-storage-ways`
 
 ## 5. Other useful commands
 
