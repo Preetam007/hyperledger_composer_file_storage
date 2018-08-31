@@ -67,7 +67,7 @@ composer archive create -t dir -n .
 
 - Install the runtime instance for the .bna file. This HAS to use the PeerAdmin@hlfv1 card
 ```
-composer runtime install --card PeerAdmin@hlfv1 --businessNetworkName composer-file-storage-ways
+composer network install --card PeerAdmin@hlfv1 -a composer-file-storage-ways\@0.0.1.bna
 ```
 
 - Start a network and create a new networkAdmin card for the business network
