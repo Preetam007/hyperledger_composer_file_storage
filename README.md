@@ -72,7 +72,7 @@ composer network install --card PeerAdmin@hlfv1 -a composer-file-storage-ways\@0
 
 - Start a network and create a new networkAdmin card for the business network
 ```
-composer network start --card PeerAdmin@hlfv1 --networkAdmin admin --networkAdminEnrollSecret adminpw --archiveFile composer-file-storage-ways@0.1.0.bna --file networkadmin.card
+composer network start --card PeerAdmin@hlfv1 --networkAdmin admin --networkAdminEnrollSecret adminpw --file networkadmin.card --networkName composer-file-storage-ways --networkVersion '0.0.1'
 ```
 
 - Import the new networkadmin.card generated
