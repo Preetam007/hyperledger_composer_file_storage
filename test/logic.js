@@ -83,6 +83,7 @@ describe('#' + namespace, () => {
         });
     });
 
+    /*
     describe('ChangeAssetValue()', () => {
         it('should change the value property of ' + assetType + ' to newValue', () => {
             const factory = businessNetworkConnection.getBusinessNetwork().getFactory();
@@ -122,5 +123,6 @@ describe('#' + namespace, () => {
             });
         });
     });
+    */
 
 });

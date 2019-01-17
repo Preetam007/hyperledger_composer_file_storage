@@ -7,7 +7,7 @@ const addUserInfo = (req, res, next) => {
   const businessNetworkConnection = new BusinessNetworkConnection();
   let user;
 
-  return businessNetworkConnection.connect('admin@composer-file-stroage-ways')
+  return businessNetworkConnection.connect('admin@composer-file-storage-ways')
       .then(() => {
         return businessNetworkConnection.getParticipantRegistry(
             `${USER_NS}.User`);
@@ -46,7 +46,7 @@ const getSpecificUser = (req, res, next) => {
   let assets;
   let exists;
   return businessNetworkConnection
-      .connect('admin@composer-file-stroage-ways')  // Auth module will add
+      .connect('admin@composer-file-storage-ways')  // Auth module will add
       .then(() => {
         return businessNetworkConnection.getParticipantRegistry(
             `${USER_NS}.User`);

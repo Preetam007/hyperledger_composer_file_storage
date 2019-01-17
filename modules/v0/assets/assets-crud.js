@@ -23,7 +23,7 @@ const uploadDrug = (req, res, next) => {
       } else {
         const businessNetworkConnection = new BusinessNetworkConnection();
         let drug;
-        return businessNetworkConnection.connect('admin@composer-file-stroage-ways')
+        return businessNetworkConnection.connect('admin@composer-file-storage-ways')
             .then(() => {
               return businessNetworkConnection.getAssetRegistry(
                   `${ASSET_NS}.Drug`);
@@ -62,7 +62,7 @@ const getSpecificDrug = (req, res, next) => {
   let assets;
   let exists;
   return businessNetworkConnection
-      .connect('admin@composer-file-stroage-ways')  // Auth module will add
+      .connect('admin@composer-file-storage-ways')  // Auth module will add
       .then(() => {
         return businessNetworkConnection.getAssetRegistry(
             `${ASSET_NS}.Drug`);
