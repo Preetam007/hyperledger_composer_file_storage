@@ -31,7 +31,7 @@ const uploadDrug = (req, res, next) => {
             .then(assetRegistry => {
               const factory = businessNetworkConnection.getBusinessNetwork().getFactory();
               drug = factory.newResource(ASSET_NS, 'Drug', req.body.containerId);
-              drug.containerImage = `https://ipfs.io/ipfs/${resd[0].hash}`;
+              drug.containerImage = `https://ipfs.infura.io/ipfs/${resd[0].hash}`
               return assetRegistry.add(drug);
             })
             .then(() => {
